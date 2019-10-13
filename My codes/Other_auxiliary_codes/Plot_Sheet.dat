@@ -1,0 +1,29 @@
+%%%%%%%%%%% Some plots which I use more often %%%%%%%%%%%%
+
+figure, scatter(A(:,1),A(:,2),40,'MarkerEdgeColor',[0 .5 .5], 'MarkerFaceColor',[0 .7 .7], 'LineWidth',1.5);
+
+%%%%%%%%%%%% For plotting bar graphs with errors %%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ cd Control/Data
+ u = load('G1.dat');
+ v = load('S.dat');
+ w = load('G2_M.dat');
+
+ cd ../../
+
+ cd Damage/Data/
+ x = load('G1.dat');
+ y = load('S.dat');
+ z = load('G2_M.dat');
+
+ a = mean(u); b = mean(v); c = mean(w);
+ d = std(u)/sqrt(length(u)); e = std(v)/sqrt(length(v)); f = std(w)/sqrt(length(w));
+ g = mean(x); h = mean(y); i = mean(z);
+ j = std(x)/sqrt(length(x)); k = std(y)/sqrt(length(y)); l = std(z)/sqrt(length(z));
+
+ p = [a(:,3) g(:,3); b(:,3) h(:,3); c(:,3) i(:,3)];
+ q = [d(:,3) j(:,3); e(:,3) k(:,3); f(:,3) l(:,3)];
+
+ figure, barwitherr(q, p);
+
+%% fitting
